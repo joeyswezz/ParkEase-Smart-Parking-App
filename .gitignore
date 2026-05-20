@@ -1,34 +1,64 @@
-# Gradle files
-.gradle/
-build/
+# Build folders
 
-# Local configuration file (sdk path, etc)
-local.properties
+bin/
+obj/
 
-# Log/OS Files
+# Visual Studio
+
+.vs/
+*.user
+*.suo
+
+# Rider
+
+.idea/
+
+# VS Code
+
+.vscode/
+
+# Logs
+
 *.log
 
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.aab
-*.apk
-output-metadata.json
+# SQLite
 
-# IntelliJ
-*.iml
-.idea/
-misc.xml
-deploymentTargetDropDown.xml
-render.experimental.xml
+*.db
+*.db-shm
+*.db-wal
 
-# Keystore files
-*.jks
-*.keystore
+# Environment variables
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
+.env
 
-# Android Profiling
-*.hprof
+# Secrets
+
+secrets.json
+appsettings.Development.json
+
+# NuGet
+
+*.nupkg
+
+# MAUI generated
+
+platforms/android/.gradle/
+platforms/android/build/
+
+# Mac
+
+.DS_Store
+
+# Windows
+
+Thumbs.db
+
+# Temporary
+
+temp/
+tmp/
+
+# API Keys
+
+*apikey*
+*secret*
