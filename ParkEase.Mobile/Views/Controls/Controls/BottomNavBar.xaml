@@ -1,0 +1,132 @@
+<ContentView
+    x:Class="ParkEase.Mobile.Views.Controls.BottomNavBar"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    HeightRequest="92"
+    InputTransparent="False">
+
+    <Grid
+        Padding="20,0"
+        VerticalOptions="End">
+
+        <Border
+            BackgroundColor="rgb(73, 137, 209)"
+            Stroke="rgb(255, 255, 255)"
+            StrokeThickness="1"
+            HeightRequest="76"
+            VerticalOptions="Center"
+            Padding="12,8">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="34" />
+            </Border.StrokeShape>
+
+            <Grid
+                ColumnDefinitions="*,*,*,*"
+                ColumnSpacing="4">
+
+                <!-- HOME -->
+                <VerticalStackLayout
+                    x:Name="HomeItem"
+                    Grid.Column="0"
+                    Spacing="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Image
+                        Source="home_icon.png"
+                        HeightRequest="28"
+                        WidthRequest="28" />
+
+                    <Label
+                        Text="Home"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="#ffffff"
+                        HorizontalTextAlignment="Center" />
+
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Home_Tapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <!-- MAP -->
+                <VerticalStackLayout
+                    x:Name="MapItem"
+                    Grid.Column="1"
+                    Spacing="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Image
+                        Source="maps_icon.png"
+                        HeightRequest="28"
+                        WidthRequest="28" />
+
+                    <Label
+                        Text="Map"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="#ffffff"
+                        HorizontalTextAlignment="Center" />
+
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Map_Tapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <!-- PARKING -->
+                <VerticalStackLayout
+                    x:Name="ParkingItem"
+                    Grid.Column="2"
+                    Spacing="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Image
+                        Source="parking_icon.png"
+                        HeightRequest="28"
+                        WidthRequest="28" />
+
+                    <Label
+                        Text="Parking"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="#ffffff"
+                        HorizontalTextAlignment="Center" />
+
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Parking_Tapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <!-- BOOKINGS -->
+                <VerticalStackLayout
+                    x:Name="BookingsItem"
+                    Grid.Column="3"
+                    Spacing="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Image
+                        Source="bookings_icon.png"
+                        HeightRequest="28"
+                        WidthRequest="28" />
+
+                    <Label
+                        Text="Bookings"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        TextColor="#ffffff"
+                        HorizontalTextAlignment="Center" />
+
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Bookings_Tapped" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</ContentView>

@@ -1,0 +1,87 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.NearbyParkingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    BackgroundColor="#090B1F"
+    Title="Nearby Parking">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <WebView
+            x:Name="MapWebView"
+            Source="https://www.google.com/maps/search/parking+near+Kingston+Jamaica"
+            Grid.Row="0" />
+
+  
+
+
+        <Border
+            Grid.Row="1"
+            BackgroundColor="#EE202232"
+            Stroke="#55FFFFFF"
+            StrokeThickness="1"
+            Padding="16"
+            Margin="18">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="24" />
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="Nearby Parking"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    x:Name="LocationStatusLabel"
+                    Text="Search ParkEase locations around Kingston."
+                    FontSize="14"
+                    TextColor="#CFCFFF" />
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+
+                    <Button
+                        Text="Use My Location"
+                        BackgroundColor="#33FFFFFF"
+                        TextColor="White"
+                        CornerRadius="22"
+                        HeightRequest="50"
+                        Clicked="UseMyLocation_Clicked" />
+
+                    <Button
+                        Grid.Column="1"
+                        Text="Open Maps"
+                        Style="{StaticResource PrimaryButton}"
+                        Clicked="OpenGoogleMaps_Clicked" />
+
+                </Grid>
+
+                <Button
+                    Text="Directions to New Kingston"
+                    BackgroundColor="#663D7EFF"
+                    TextColor="White"
+                    CornerRadius="22"
+                    HeightRequest="50"
+                    Clicked="DirectionsToNewKingston_Clicked" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+      
+        <controls:AppMenuWidget
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            ZIndex="110" />
+
+      
+
+    </Grid>
+
+   
+
+</ContentPage>

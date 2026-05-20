@@ -1,0 +1,25 @@
+<Shell
+    x:Class="ParkEase.Mobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:ParkEase.Mobile.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
+
+    <TabBar>
+        <ShellContent Route="Login" ContentTemplate="{DataTemplate views:LoginPage}" />
+        <ShellContent Route="Dashboard" ContentTemplate="{DataTemplate views:DashboardPage}" />
+        <ShellContent Route="ParkingLots" ContentTemplate="{DataTemplate views:ParkingLotsPage}" />
+        <ShellContent Route="Vehicles" ContentTemplate="{DataTemplate views:VehiclesPage}" />
+        <ShellContent Route="MyBookingsPage" ContentTemplate="{DataTemplate views:MyBookingsPage}" />
+        <ShellContent Route="NearbyParking" ContentTemplate="{DataTemplate views:NearbyParkingPage}" />
+        <ShellContent Route="Payments" ContentTemplate="{DataTemplate views:PaymentsPage}" />
+        <ShellContent Route="Profile" ContentTemplate="{DataTemplate views:ProfilePage}" />
+        <ShellContent Route="Admin" ContentTemplate="{DataTemplate views:AdminDashboardPage}" />
+        <ShellContent Route="Analytics" ContentTemplate="{DataTemplate views:AnalyticsPage}" />
+        <ShellContent Route="AiAssistant" ContentTemplate="{DataTemplate views:AiAssistantPage}" />
+        <ShellContent Route="AboutApp" ContentTemplate="{DataTemplate views:AboutAppPage}" />
+    </TabBar>
+
+</Shell>

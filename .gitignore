@@ -1,0 +1,16 @@
+bin/
+obj/
+.vs/
+.vscode/
+.history/
+*.user
+*.suo
+*.db
+*.db-shm
+*.db-wal
+.env
+secrets.json
+appsettings.Development.json
+*.log
+.DS_Store
+Thumbs.db

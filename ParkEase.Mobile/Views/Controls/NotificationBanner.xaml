@@ -1,0 +1,36 @@
+<ContentView
+    x:Class="ParkEase.Mobile.Views.Controls.NotificationBanner"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    IsVisible="False"
+    InputTransparent="False">
+
+    <Border
+        x:Name="Banner"
+        BackgroundColor="#EE202232"
+        Stroke="#55FFFFFF"
+        StrokeThickness="1"
+        Padding="16"
+        Margin="18"
+        HorizontalOptions="Fill"
+        VerticalOptions="Start">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="22" />
+        </Border.StrokeShape>
+
+        <VerticalStackLayout Spacing="4">
+            <Label
+                x:Name="TitleLabel"
+                FontSize="17"
+                FontAttributes="Bold"
+                TextColor="White" />
+
+            <Label
+                x:Name="MessageLabel"
+                FontSize="14"
+                TextColor="#DADFFF" />
+        </VerticalStackLayout>
+
+    </Border>
+</ContentView>

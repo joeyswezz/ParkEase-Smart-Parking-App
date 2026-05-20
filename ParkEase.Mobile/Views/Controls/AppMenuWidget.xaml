@@ -1,0 +1,290 @@
+<ContentView
+    x:Class="ParkEase.Mobile.Views.Controls.AppMenuWidget"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill">
+
+    <Grid
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill"
+        InputTransparent="True"
+        CascadeInputTransparent="False">
+
+        <BoxView
+            x:Name="MenuOverlay"
+            IsVisible="False"
+            Color="#AA000000"
+            Opacity="0"
+            InputTransparent="False" />
+
+        <Border
+            x:Name="MenuPanel"
+            IsVisible="False"
+            InputTransparent="False"
+            WidthRequest="150"
+            BackgroundColor="#EE1F1832"
+            Stroke="White"
+            StrokeThickness="2"
+            Padding="12"
+            Margin="0,12,18,0"
+            HorizontalOptions="End"
+            VerticalOptions="Start">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="App Menu"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    HorizontalTextAlignment="Center" />
+
+                <BoxView
+                    HeightRequest="3"
+                    Color="White" />
+
+                <VerticalStackLayout Spacing="8">
+
+                    <!-- HOME -->
+                    <VerticalStackLayout>
+                        <Image Source="home_icon.png" HeightRequest="34" />
+
+                        <Label
+                            Text="Home"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Home_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+
+                    <!-- MAP -->
+                    <VerticalStackLayout>
+                        <Image Source="maps_icon.png" HeightRequest="34" />
+
+                        <Label
+                            Text="Map"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Map_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+
+                    <!-- ANALYTICS -->
+                    <VerticalStackLayout x:Name="AnalyticsMenuItem">
+
+                        <Image
+                            Source="analytics_icon.png"
+                            HeightRequest="34" />
+
+                        <Label
+                            Text="Analytics"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Analytics_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                    </VerticalStackLayout>
+
+                    <!-- PROFILE -->
+                    <VerticalStackLayout>
+
+                        <Image
+                            Source="profile_icon.png"
+                            HeightRequest="34" />
+
+                        <Label
+                            Text="Profile"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Profile_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                    </VerticalStackLayout>
+
+                    <!-- ADMIN -->
+                    <VerticalStackLayout x:Name="AdminMenuItem">
+
+                        <Image
+                            Source="admin_icon.png"
+                            HeightRequest="34" />
+
+                        <Label
+                            Text="Admin"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Admin_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                    </VerticalStackLayout>
+
+                    <!-- AI -->
+                    <VerticalStackLayout>
+
+                        <Image
+                            Source="ai_icon.png"
+                            HeightRequest="34" />
+
+                        <Label
+                            Text="AI"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Ai_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                    </VerticalStackLayout>
+
+                    <!-- VEHICLES -->
+                    <VerticalStackLayout>
+
+                        <Image
+                            Source="vehicles_icon.png"
+                            HeightRequest="34" />
+
+                        <Label
+                            Text="Vehicles"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Vehicles_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                    </VerticalStackLayout>
+
+                    <!-- BOOKINGS -->
+                    <VerticalStackLayout>
+
+                        <Image
+                            Source="bookings_icon.png"
+                            HeightRequest="34" />
+
+                        <Label
+                            Text="Bookings"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Bookings_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                    </VerticalStackLayout>
+
+                    <!-- PARKING -->
+                    <VerticalStackLayout>
+
+                        <Image
+                            Source="parking_icon.png"
+                            HeightRequest="34" />
+
+                        <Label
+                            Text="Parking"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Parking_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                    </VerticalStackLayout>
+
+                    <!-- ABOUT -->
+                    <VerticalStackLayout>
+
+                        <Image
+                            Source="parkease_logo_white.png"
+                            HeightRequest="32" />
+
+                        <Label
+                            Text="About"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="About_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                    </VerticalStackLayout>
+
+                    <!-- EXIT -->
+                    <VerticalStackLayout>
+
+                        <Image
+                            Source="exit_icon.png"
+                            HeightRequest="34" />
+
+                        <Label
+                            Text="Exit"
+                            TextColor="White"
+                            FontSize="12"
+                            HorizontalTextAlignment="Center" />
+
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Exit_Tapped" />
+                        </VerticalStackLayout.GestureRecognizers>
+
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- MENU BUTTON -->
+        <Border
+            InputTransparent="False"
+            WidthRequest="52"
+            HeightRequest="52"
+            BackgroundColor="#AA1F1832"
+            Stroke="#88FFFFFF"
+            StrokeThickness="1"
+            Margin="0,12,16,0"
+            HorizontalOptions="End"
+            VerticalOptions="Start">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="26" />
+            </Border.StrokeShape>
+
+            <Label
+                Text="☰"
+                FontSize="28"
+                TextColor="White"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center" />
+
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="MenuButton_Tapped" />
+            </Border.GestureRecognizers>
+
+        </Border>
+
+    </Grid>
+</ContentView>

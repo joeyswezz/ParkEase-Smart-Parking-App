@@ -1,0 +1,23 @@
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    x:Class="ParkEase.Mobile.Views.BookingPage"
+    Title="Booking"
+
+    
+    BackgroundColor="#090B1F">
+
+    <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+        <Label
+            Text="ParkEase"
+            FontSize="32"
+            FontAttributes="Bold"
+            TextColor="White" />
+
+        <Label
+            Text="Page coming soon"
+            FontSize="18"
+            TextColor="#CCFFFFFF" />
+    </VerticalStackLayout>
+</ContentPage>

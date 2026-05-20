@@ -1,0 +1,58 @@
+<ContentView
+    x:Class="ParkEase.Mobile.Views.Controls.AnimatedGradientBackground"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    InputTransparent="True">
+
+    <Grid ClipToBounds="True">
+
+        <BoxView>
+            <BoxView.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#BFD7FF" Offset="0.0" />
+                    <GradientStop Color="#6D8CFF" Offset="0.45" />
+                    <GradientStop Color="#9B5CFF" Offset="1.0" />
+                </LinearGradientBrush>
+            </BoxView.Background>
+        </BoxView>
+
+        <Ellipse
+            x:Name="BlobOne"
+            WidthRequest="620"
+            HeightRequest="620"
+            Opacity="0.55"
+            Fill="#BFD7FF"
+            HorizontalOptions="Start"
+            VerticalOptions="Start" />
+
+        <Ellipse
+            x:Name="BlobTwo"
+            WidthRequest="680"
+            HeightRequest="680"
+            Opacity="0.50"
+            Fill="#8B5CFF"
+            HorizontalOptions="End"
+            VerticalOptions="Center" />
+
+        <Ellipse
+            x:Name="BlobThree"
+            WidthRequest="600"
+            HeightRequest="600"
+            Opacity="0.45"
+            Fill="#F2E9FF"
+            HorizontalOptions="Start"
+            VerticalOptions="End" />
+
+        <Ellipse
+            x:Name="BlobFour"
+            WidthRequest="560"
+            HeightRequest="560"
+            Opacity="0.38"
+            Fill="#3D7EFF"
+            HorizontalOptions="End"
+            VerticalOptions="End" />
+
+        <BoxView Color="#090B1F" Opacity="0.28" />
+
+    </Grid>
+</ContentView>

@@ -1,0 +1,167 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.AiAssistantPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    BackgroundColor="#090B1F"
+    Title="AI Assistant">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AiAssistantViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+
+        <!-- Background -->
+        
+        
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+
+            <VerticalStackLayout
+                Padding="28"
+                Spacing="24">
+
+                <!-- Logo -->
+                <Image
+                    Source="parkease_logotype_white.png"
+                    HeightRequest="140"
+                    HorizontalOptions="Center"
+                    Aspect="AspectFit"
+                    Margin="0,20,0,0" />
+
+                <!-- Heading -->
+                <Label
+                    Text="AI Parking Assistant"
+                    FontSize="38"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    HorizontalTextAlignment="Center" />
+
+                <Label
+                    Text="Ask for parking recommendations based on price, availability, location, and security."
+                    FontSize="16"
+                    TextColor="#CFCFFF"
+                    HorizontalTextAlignment="Center" />
+
+                <!-- Question Card -->
+                <Border
+                    Style="{StaticResource GlassCard}"
+                    Padding="22">
+
+                    <VerticalStackLayout Spacing="18">
+
+                        <Label
+                            Text="Ask a Question"
+                            FontSize="22"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Editor
+                            Placeholder="Example: Find me the cheapest secure parking for 3 hours near New Kingston."
+                            PlaceholderColor="#AAFFFFFF"
+                            Text="{Binding UserQuestion}"
+                            TextColor="White"
+                            BackgroundColor="#22FFFFFF"
+                            HeightRequest="140"
+                            AutoSize="TextChanges" />
+
+                        <Button
+                            Text="Ask ParkEase AI"
+                            Style="{StaticResource PrimaryButton}"
+                            HeightRequest="58"
+                            Command="{Binding AskAssistantCommand}" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- Response Card -->
+                <Border
+                    Style="{StaticResource GlassCard}"
+                    Padding="22">
+
+                    <VerticalStackLayout Spacing="16">
+
+                        <Label
+                            Text="AI Recommendation"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <ActivityIndicator
+                            IsRunning="{Binding IsBusy}"
+                            IsVisible="{Binding IsBusy}"
+                            Color="#8B5CFF"
+                            HeightRequest="40" />
+
+                        <ScrollView HeightRequest="260">
+
+                            <Label
+                                Text="{Binding AiAnswer}"
+                                FontSize="16"
+                                TextColor="#E6E6FF"
+                                LineBreakMode="WordWrap" />
+
+                        </ScrollView>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- Sample Questions -->
+                <Border
+                    Style="{StaticResource GlassCard}"
+                    Padding="20">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="Suggested Questions"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Label
+                            Text="• Which parking lot is the cheapest?"
+                            FontSize="15"
+                            TextColor="#DADFFF" />
+
+                        <Label
+                            Text="• Find secure parking near Half Way Tree."
+                            FontSize="15"
+                            TextColor="#DADFFF" />
+
+                        <Label
+                            Text="• Which lot has the most available spaces?"
+                            FontSize="15"
+                            TextColor="#DADFFF" />
+
+                        <Label
+                            Text="• Recommend premium parking for my vehicle."
+                            FontSize="15"
+                            TextColor="#DADFFF" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+        <controls:AppMenuWidget
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    ZIndex="110" />
+
+    <controls:BottomNavBar
+    HorizontalOptions="Fill"
+    VerticalOptions="End"
+    ZIndex="105" />
+
+    </Grid>
+
+</ContentPage>

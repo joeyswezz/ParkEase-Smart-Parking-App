@@ -1,0 +1,255 @@
+<ContentPage
+  
+    x:Class="ParkEase.Mobile.Views.VehiclesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+     xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    BackgroundColor="#090B1F"
+    Title="Vehicles">
+
+    <ContentPage.BindingContext>
+        <viewmodels:VehiclesViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+    
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+            <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="My Vehicles" FontSize="36" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Add and manage vehicles used for parking bookings." FontSize="15" TextColor="#CFCFFF" />
+                </VerticalStackLayout>
+
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label Text="{Binding FormTitle}" FontSize="22" FontAttributes="Bold" TextColor="White" />
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <Entry Placeholder="First Name" Text="{Binding FirstName}" TextColor="White" PlaceholderColor="#AAFFFFFF" />
+                            <Entry Grid.Column="1" Placeholder="Last Name" Text="{Binding LastName}" TextColor="White" PlaceholderColor="#AAFFFFFF" />
+                        </Grid>
+
+                        <Entry Placeholder="Phone Number" Text="{Binding PhoneNumber}" Keyboard="Telephone" TextColor="White" PlaceholderColor="#AAFFFFFF" />
+                        <Entry Placeholder="SMS Number" Text="{Binding SmsNumber}" Keyboard="Telephone" TextColor="White" PlaceholderColor="#AAFFFFFF" />
+                        <Entry Placeholder="Email Address" Text="{Binding EmailAddress}" Keyboard="Email" TextColor="White" PlaceholderColor="#AAFFFFFF" />
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <Entry Placeholder="Plate Number" Text="{Binding PlateNumber}" TextColor="White" PlaceholderColor="#AAFFFFFF" />
+                            <Entry Grid.Column="1" Placeholder="Color" Text="{Binding Color}" TextColor="White" PlaceholderColor="#AAFFFFFF" />
+                        </Grid>
+
+                        <Entry Placeholder="Vehicle Type e.g. Coupe, Sedan, SUV" Text="{Binding VehicleType}" TextColor="White" PlaceholderColor="#AAFFFFFF" />
+
+                        <Editor
+                            Placeholder="Vehicle Details"
+                            Text="{Binding VehicleDetails}"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF"
+                            AutoSize="TextChanges"
+                            HeightRequest="100" />
+
+                        <Button Text="{Binding SaveButtonText}" Style="{StaticResource PrimaryButton}" Command="{Binding SaveVehicleCommand}" />
+
+                        <Button
+                            Text="Clear Form"
+                            BackgroundColor="#33FFFFFF"
+                            TextColor="White"
+                            CornerRadius="22"
+                            HeightRequest="46"
+                            Command="{Binding ClearFormCommand}" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="Saved Vehicles" FontSize="24" FontAttributes="Bold" TextColor="White" />
+
+                <CollectionView ItemsSource="{Binding Vehicles}">
+                    <CollectionView.EmptyView>
+                        <Label
+                            Text="No vehicles saved yet. Add your first vehicle above."
+                            TextColor="#DADFFF"
+                            HorizontalTextAlignment="Center"
+                            Margin="0,30,0,0" />
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource GlassCard}" Padding="0" Margin="0,10">
+
+                                <VerticalStackLayout Spacing="0">
+
+                                    <Grid HeightRequest="170">
+                                        <Image
+                                            Source="{Binding VehicleImage}"
+                                            Aspect="AspectFill"
+                                            Opacity="0.95" />
+
+                                        <BoxView Color="#55000000" />
+
+                                        <Border
+                                            BackgroundColor="#AA000000"
+                                            Padding="10,6"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Start"
+                                            Margin="0,14,14,0"
+                                            StrokeThickness="0">
+
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="16" />
+                                            </Border.StrokeShape>
+
+                                            <Label
+                                                Text="{Binding PlateNumber}"
+                                                TextColor="White"
+                                                FontSize="15"
+                                                FontAttributes="Bold" />
+                                        </Border>
+                                    </Grid>
+
+                                    <Grid Margin="18,-38,18,0" ColumnDefinitions="Auto,*">
+
+                                        <Border
+                                            HeightRequest="82"
+                                            WidthRequest="82"
+                                            BackgroundColor="#22000000"
+                                            Stroke="#AAFFFFFF"
+                                            StrokeThickness="2">
+
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="41" />
+                                            </Border.StrokeShape>
+
+                                            <Image
+                                                Source="{Binding ProfileImage}"
+                                                Aspect="AspectFill"
+                                                HeightRequest="82"
+                                                WidthRequest="82" />
+                                        </Border>
+
+                                        <VerticalStackLayout Grid.Column="1" Padding="14,38,0,0" Spacing="2">
+                                            <Label
+                                                Text="{Binding FirstName}"
+                                                FontSize="22"
+                                                FontAttributes="Bold"
+                                                TextColor="White" />
+
+                                            <Label
+                                                Text="{Binding LastName}"
+                                                FontSize="22"
+                                                FontAttributes="Bold"
+                                                TextColor="White" />
+
+                                            <Label
+                                                Text="Vehicle Owner"
+                                                FontSize="13"
+                                                TextColor="#CFCFFF" />
+                                        </VerticalStackLayout>
+
+                                    </Grid>
+
+                                    <VerticalStackLayout Padding="18" Spacing="14">
+
+                                        <Grid ColumnDefinitions="*,*">
+                                            <VerticalStackLayout Spacing="4">
+                                                <Label Text="Date Added" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding DateAdded, StringFormat='{0:MMM dd, yyyy}'}" FontSize="14" TextColor="White" />
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                                <Label Text="Plate Number" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding PlateNumber}" FontSize="14" FontAttributes="Bold" TextColor="#A6E3FF" />
+                                            </VerticalStackLayout>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="18" RowSpacing="12">
+
+                                            <VerticalStackLayout Spacing="4">
+                                                <Label Text="Phone" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding PhoneNumber}" FontSize="14" TextColor="White" LineBreakMode="TailTruncation" />
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                                <Label Text="SMS" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding SmsNumber}" FontSize="14" TextColor="White" LineBreakMode="TailTruncation" />
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="2" Spacing="4">
+                                                <Label Text="Email" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding EmailAddress}" FontSize="14" TextColor="White" LineBreakMode="TailTruncation" />
+                                            </VerticalStackLayout>
+
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="*,*" ColumnSpacing="18">
+                                            <VerticalStackLayout Spacing="4">
+                                                <Label Text="Car Type" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding VehicleType}" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                                <Label Text="Car Color" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding Color}" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                                            </VerticalStackLayout>
+                                        </Grid>
+
+                                        <Border BackgroundColor="#22FFFFFF" Padding="14" StrokeThickness="0">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="16" />
+                                            </Border.StrokeShape>
+
+                                            <VerticalStackLayout Spacing="6">
+                                                <Label Text="Vehicle Details" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding VehicleDetails}" FontSize="14" TextColor="#E6E6FF" />
+                                            </VerticalStackLayout>
+                                        </Border>
+
+                                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                                            <Button
+                                                Text="Edit"
+                                                BackgroundColor="#663D7EFF"
+                                                TextColor="White"
+                                                CornerRadius="18"
+                                                HeightRequest="46"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:VehiclesViewModel}}, Path=EditVehicleCommand}"
+                                                CommandParameter="{Binding .}" />
+
+                                            <Button
+                                                Grid.Column="1"
+                                                Text="Delete"
+                                                BackgroundColor="#AAFF3B5C"
+                                                TextColor="White"
+                                                CornerRadius="18"
+                                                HeightRequest="46"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:VehiclesViewModel}}, Path=DeleteVehicleCommand}"
+                                                CommandParameter="{Binding .}" />
+                                        </Grid>
+
+                                    </VerticalStackLayout>
+
+                                </VerticalStackLayout>
+
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+<controls:AppMenuWidget
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    ZIndex="110" />
+
+    <controls:BottomNavBar
+    HorizontalOptions="Fill"
+    VerticalOptions="End"
+    ZIndex="105" />
+
+    </Grid>
+</ContentPage>

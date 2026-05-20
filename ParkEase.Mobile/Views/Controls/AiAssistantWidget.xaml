@@ -1,0 +1,149 @@
+<ContentView
+    x:Class="ParkEase.Mobile.Views.Controls.AiAssistantWidget"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill">
+
+    <Grid
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill"
+        InputTransparent="True"
+        CascadeInputTransparent="False">
+
+        <BoxView
+            x:Name="BlurOverlay"
+            IsVisible="False"
+            Color="#CC000000"
+            Opacity="0"
+            InputTransparent="False"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill" />
+
+        <Border
+            x:Name="ChatPanel"
+            IsVisible="False"
+            InputTransparent="False"
+            WidthRequest="340"
+            HeightRequest="500"
+            BackgroundColor="#EE202232"
+            Stroke="#55FFFFFF"
+            StrokeThickness="1"
+            Padding="16"
+            Margin="0,0,18,112"
+            HorizontalOptions="End"
+            VerticalOptions="End">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="26" />
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="12">
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label
+                        Text="ParkEase AI"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="White" />
+
+                    <Button
+                        Grid.Column="1"
+                        Text="X"
+                        WidthRequest="44"
+                        HeightRequest="40"
+                        CornerRadius="20"
+                        BackgroundColor="#33FFFFFF"
+                        TextColor="White"
+                        Clicked="CloseButton_Clicked" />
+                </Grid>
+
+                <Label
+                    Text="Ask for parking suggestions, prices, availability, or the best secure lot."
+                    FontSize="13"
+                    TextColor="#CFCFFF" />
+
+                <HorizontalStackLayout Spacing="8">
+                    <Button
+                        Text="Cheapest"
+                        FontSize="12"
+                        BackgroundColor="#33FFFFFF"
+                        TextColor="White"
+                        CornerRadius="16"
+                        HeightRequest="34"
+                        Clicked="SuggestedCheapest_Clicked" />
+
+                    <Button
+                        Text="Most Available"
+                        FontSize="12"
+                        BackgroundColor="#33FFFFFF"
+                        TextColor="White"
+                        CornerRadius="16"
+                        HeightRequest="34"
+                        Clicked="SuggestedAvailable_Clicked" />
+                </HorizontalStackLayout>
+
+                <Editor
+                    x:Name="QuestionEditor"
+                    Placeholder="Ask ParkEase AI..."
+                    PlaceholderColor="#AAFFFFFF"
+                    TextColor="White"
+                    AutoSize="TextChanges"
+                    HeightRequest="90"
+                    BackgroundColor="#22FFFFFF" />
+
+                <Button
+                    Text="Ask"
+                    Style="{StaticResource PrimaryButton}"
+                    Clicked="AskButton_Clicked" />
+
+                <ActivityIndicator
+                    x:Name="LoadingIndicator"
+                    IsVisible="False"
+                    IsRunning="False" />
+
+                <ScrollView HeightRequest="170">
+                    <Label
+                        x:Name="AnswerLabel"
+                        Text="Hi, I’m your ParkEase assistant."
+                        TextColor="#E6E6FF"
+                        FontSize="14"
+                        LineBreakMode="WordWrap" />
+                </ScrollView>
+
+            </VerticalStackLayout>
+        </Border>
+
+        <Border
+            x:Name="FloatingButton"
+            InputTransparent="False"
+            WidthRequest="70"
+            HeightRequest="70"
+            BackgroundColor="#663D7EFF"
+            Stroke="#88FFFFFF"
+            StrokeThickness="1"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Margin="0,0,18,112">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="35" />
+            </Border.StrokeShape>
+
+            <Grid>
+                <Image
+                    Source="ai_assistant_icon.png"
+                    WidthRequest="70"
+                    HeightRequest="70"
+                    Aspect="AspectFit"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="FloatingButton_Tapped" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Border>
+
+    </Grid>
+</ContentView>

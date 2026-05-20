@@ -1,0 +1,97 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.AboutAppPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+    BackgroundColor="#090B1F"
+    Title="About App">
+
+    <Grid>
+   
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+            <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <Image
+                    Source="parkease_logotype_white.png"
+                    HeightRequest="140"
+                    Aspect="AspectFit"
+                    HorizontalOptions="Center" />
+
+                <Label
+                    Text="About ParkEase"
+                    FontSize="36"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="ParkEase is a smart parking reservation application designed to help users find, reserve, pay for, and manage secure parking spaces. The app includes vehicle management, booking checkout, QR reservation passes, AI parking recommendations, Google Maps discovery, admin tools, analytics, and digital wallet features."
+                    FontSize="15"
+                    TextColor="#DADFFF"
+                    LineBreakMode="WordWrap" />
+
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label
+                            Text="What ParkEase Offers"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Label Text="• Find nearby parking spaces" TextColor="#DADFFF" />
+                        <Label Text="• Reserve parking spots in advance" TextColor="#DADFFF" />
+                        <Label Text="• Manage vehicles and bookings" TextColor="#DADFFF" />
+                        <Label Text="• Pay through a simulated digital wallet" TextColor="#DADFFF" />
+                        <Label Text="• Generate QR parking entry passes" TextColor="#DADFFF" />
+                        <Label Text="• Use AI to recommend parking options" TextColor="#DADFFF" />
+                        <Label Text="• Track occupancy, revenue, and analytics" TextColor="#DADFFF" />
+                        <Label Text="• Manage lots through an admin/operator dashboard" TextColor="#DADFFF" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="16">
+
+                        <Label
+                            Text="Quick FAQ"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Label Text="Q: What is ParkEase used for?" FontAttributes="Bold" TextColor="White" />
+                        <Label Text="A: It helps users search for parking, reserve a spot, pay, and receive a QR entry pass." TextColor="#DADFFF" />
+
+                        <Label Text="Q: Does the payment process charge real money?" FontAttributes="Bold" TextColor="White" />
+                        <Label Text="A: No. For this MVP/school project, payments are simulated." TextColor="#DADFFF" />
+
+                        <Label Text="Q: What does the AI assistant do?" FontAttributes="Bold" TextColor="White" />
+                        <Label Text="A: It recommends parking based on price, availability, occupancy, security level, and booking data." TextColor="#DADFFF" />
+
+                        <Label Text="Q: What does the admin dashboard do?" FontAttributes="Bold" TextColor="White" />
+                        <Label Text="A: It allows operators to manage parking lots, spaces, prices, occupancy, and status." TextColor="#DADFFF" />
+
+                        <Label Text="Q: What is the QR code for?" FontAttributes="Bold" TextColor="White" />
+                        <Label Text="A: It acts as the parking entry pass after a successful reservation." TextColor="#DADFFF" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+<controls:AppMenuWidget
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    ZIndex="110" />
+
+    <controls:BottomNavBar
+    HorizontalOptions="Fill"
+    VerticalOptions="End"
+    ZIndex="105" />
+
+    </Grid>
+</ContentPage>

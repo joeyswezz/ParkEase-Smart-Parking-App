@@ -1,0 +1,196 @@
+<ContentPage
+        x:Class="ParkEase.Mobile.Views.ParkingLotsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+    BackgroundColor="#090B1F"
+    Title="Parking Lots">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ParkingLotsViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+   
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+          <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Find Parking" FontSize="36" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="Browse secure and modern parking spaces near your destination." FontSize="15" TextColor="#CFCFFF" />
+                </VerticalStackLayout>
+
+                <Button
+                    Text="Refresh Parking Lots"
+                    Style="{StaticResource PrimaryButton}"
+                    Command="{Binding LoadParkingLotsCommand}" />
+
+                <CollectionView ItemsSource="{Binding ParkingLots}">
+                    <CollectionView.EmptyView>
+                        <Label
+                            Text="No parking lots loaded yet."
+                            TextColor="#DADFFF"
+                            HorizontalTextAlignment="Center"
+                            Margin="0,60,0,0" />
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource GlassCard}" Padding="0" Margin="0,10">
+                                <VerticalStackLayout Spacing="0">
+
+                                    <Grid HeightRequest="170">
+
+                                        <Image Source="{Binding Image}" Aspect="AspectFill" Opacity="0.95" />
+
+                                        <BoxView Color="#55000000" />
+
+                                        <!-- STATUS BADGE -->
+                                        <Border
+                                            BackgroundColor="{Binding StatusColor}"
+                                            Padding="14,8"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Start"
+                                            Margin="14"
+                                            StrokeThickness="0">
+
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="18" />
+                                            </Border.StrokeShape>
+
+                                            <Label
+                                                Text="{Binding StatusLabel}"
+                                                FontSize="13"
+                                                FontAttributes="Bold"
+                                                TextColor="White" />
+                                        </Border>
+
+                                        <!-- PRICE BADGE -->
+                                        <Border
+                                            BackgroundColor="#AA000000"
+                                            Padding="14,8"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Start"
+                                            Margin="14"
+                                            StrokeThickness="0">
+
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="18" />
+                                            </Border.StrokeShape>
+
+                                            <Label
+                                                Text="{Binding PricePerHour, StringFormat='${0}/hr'}"
+                                                FontSize="15"
+                                                FontAttributes="Bold"
+                                                TextColor="#A6E3FF" />
+                                        </Border>
+
+                                        <Image
+                                            Source="icon_secure_parking.png"
+                                            HeightRequest="72"
+                                            WidthRequest="72"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            Aspect="AspectFit" />
+                                    </Grid>
+
+                                    <VerticalStackLayout Padding="18" Spacing="14">
+
+                                        <Label
+                                            Text="{Binding Name}"
+                                            FontSize="24"
+                                            FontAttributes="Bold"
+                                            TextColor="White" />
+
+                                        <Label
+                                            Text="{Binding Location}"
+                                            FontSize="15"
+                                            TextColor="#D8D8FF" />
+
+                                        <Grid
+                                            ColumnDefinitions="*,*"
+                                            RowDefinitions="Auto,Auto"
+                                            ColumnSpacing="18"
+                                            RowSpacing="16">
+
+                                            <VerticalStackLayout Spacing="4">
+                                                <Label Text="Available Spaces" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding AvailableSpaces}" FontSize="20" FontAttributes="Bold" TextColor="#A6E3FF" />
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                                <Label Text="Total Spaces" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding TotalSpaces}" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout Grid.Row="1" Spacing="4">
+                                                <Label Text="Security Level" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding SecurityLevel}" FontSize="15" FontAttributes="Bold" TextColor="#90EE90" />
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="4">
+                                                <Label Text="Opening Hours" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label Text="{Binding OpeningHours}" FontSize="15" TextColor="White" />
+                                            </VerticalStackLayout>
+                                        </Grid>
+
+                                        <VerticalStackLayout Spacing="6">
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Label Text="Occupancy" FontSize="12" TextColor="#AFC0FF" />
+                                                <Label
+                                                    Grid.Column="1"
+                                                    Text="{Binding OccupancyPercentage, StringFormat='{0:F0}% used'}"
+                                                    FontSize="12"
+                                                    TextColor="#A6E3FF" />
+                                            </Grid>
+
+                                            <ProgressBar
+                                                Progress="{Binding OccupancyRate}"
+                                                ProgressColor="{Binding StatusColor}"
+                                                BackgroundColor="#33FFFFFF"
+                                                HeightRequest="8"
+                                                ScaleY="2" />
+                                        </VerticalStackLayout>
+
+                                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                                            <Button
+                                                Text="View Map"
+                                                BackgroundColor="#33FFFFFF"
+                                                TextColor="White"
+                                                CornerRadius="22"
+                                                HeightRequest="50"
+                                                Clicked="ViewMapButton_Clicked"
+                                                CommandParameter="{Binding Location}" />
+
+                                            <Button
+                                                Grid.Column="1"
+                                                Text="Book Now"
+                                                Style="{StaticResource PrimaryButton}"
+                                                Clicked="BookNowButton_Clicked"
+                                                CommandParameter="{Binding .}" />
+                                        </Grid>
+
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+        <controls:AppMenuWidget
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    ZIndex="110" />
+
+<controls:BottomNavBar
+    HorizontalOptions="Fill"
+    VerticalOptions="End"
+    ZIndex="105" />
+
+    </Grid>
+</ContentPage>

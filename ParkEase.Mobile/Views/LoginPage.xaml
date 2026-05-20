@@ -1,0 +1,190 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+    BackgroundColor="#090B1F"
+    Title="Login">
+
+    <ContentPage.BindingContext>
+        <viewmodels:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+
+     
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+            <VerticalStackLayout Padding="26" Spacing="22">
+
+                <Image
+                    Source="parkease_logotype_white.png"
+                    HeightRequest="145"
+                    Aspect="AspectFit"
+                    HorizontalOptions="Center" />
+
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label
+                            Text="{Binding FormTitle}"
+                            FontSize="30"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Access your parking bookings, vehicles, and reservations."
+                            FontSize="14"
+                            TextColor="#CFCFFF"
+                            HorizontalTextAlignment="Center" />
+
+                        <!-- REGISTER ONLY FIELDS -->
+                        <VerticalStackLayout IsVisible="{Binding IsRegisterMode}" Spacing="12">
+
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                <Entry
+                                    Placeholder="First Name"
+                                    Text="{Binding FirstName}"
+                                    TextColor="White"
+                                    PlaceholderColor="#AAFFFFFF" />
+
+                                <Entry
+                                    Grid.Column="1"
+                                    Placeholder="Last Name"
+                                    Text="{Binding LastName}"
+                                    TextColor="White"
+                                    PlaceholderColor="#AAFFFFFF" />
+                            </Grid>
+
+                            <Entry
+                                Placeholder="Display Name"
+                                Text="{Binding DisplayName}"
+                                TextColor="White"
+                                PlaceholderColor="#AAFFFFFF" />
+
+                            <Entry
+                                Placeholder="Phone Number"
+                                Text="{Binding PhoneNumber}"
+                                Keyboard="Telephone"
+                                TextColor="White"
+                                PlaceholderColor="#AAFFFFFF" />
+
+                        </VerticalStackLayout>
+
+                        <!-- LOGIN + REGISTER FIELDS -->
+                        <Entry
+                            Placeholder="Email Address"
+                            Text="{Binding EmailAddress}"
+                            Keyboard="Email"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF" />
+
+                        <Entry
+                            Placeholder="Password"
+                            Text="{Binding Password}"
+                            IsPassword="True"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF" />
+
+                        <Entry
+                            IsVisible="{Binding IsRegisterMode}"
+                            Placeholder="Confirm Password"
+                            Text="{Binding ConfirmPassword}"
+                            IsPassword="True"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF" />
+
+                        <!-- TERMS -->
+                        <VerticalStackLayout IsVisible="{Binding IsRegisterMode}" Spacing="8">
+
+                            <HorizontalStackLayout Spacing="10">
+                                <CheckBox
+                                    IsChecked="{Binding IsAdult}"
+                                    Color="#9B5CFF" />
+
+                                <Label
+                                    Text="I confirm that I am 18 or older."
+                                    TextColor="#DADFFF"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
+                            <HorizontalStackLayout Spacing="10">
+                                <CheckBox
+                                    IsChecked="{Binding AcceptedTerms}"
+                                    Color="#9B5CFF" />
+
+                                <Label
+                                    Text="I agree to the Terms and Conditions."
+                                    TextColor="#DADFFF"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
+                            <Label
+                                Text="Your information is stored securely for this school project demo."
+                                FontSize="12"
+                                TextColor="#99FFFFFF"
+                                HorizontalTextAlignment="Center" />
+
+                        </VerticalStackLayout>
+
+                        <Label
+                            Text="{Binding StatusMessage}"
+                            TextColor="#FFB3B3"
+                            FontSize="13"
+                            HorizontalTextAlignment="Center" />
+
+                        <Button
+                            Text="{Binding PrimaryButtonText}"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding SubmitCommand}" />
+
+                        <Button
+                            Text="{Binding ToggleButtonText}"
+                            BackgroundColor="#33FFFFFF"
+                            TextColor="White"
+                            CornerRadius="22"
+                            HeightRequest="48"
+                            Command="{Binding ToggleModeCommand}" />
+
+                        <!-- SOCIAL STYLE BUTTONS - VISUAL ONLY FOR NOW -->
+                        <VerticalStackLayout IsVisible="{Binding IsRegisterMode}" Spacing="10">
+
+                            <Label
+                                Text="Save some time and use"
+                                FontSize="12"
+                                TextColor="#AAFFFFFF"
+                                HorizontalTextAlignment="Center" />
+
+                            <Button
+                                Text="Continue with Google"
+                                BackgroundColor="#EA4335"
+                                TextColor="White"
+                                CornerRadius="22"
+                                HeightRequest="46" />
+
+                            <Button
+                                Text="Continue with Facebook"
+                                BackgroundColor="#4267B2"
+                                TextColor="White"
+                                CornerRadius="22"
+                                HeightRequest="46" />
+
+                            <Label
+                                Text="We never post on your behalf."
+                                FontSize="12"
+                                TextColor="#99FFFFFF"
+                                HorizontalTextAlignment="Center" />
+
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

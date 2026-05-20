@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ParkEase.Api/ParkEase.Api.csproj" />
+  <Project Path="ParkEase.Mobile/ParkEase.Mobile.csproj" />
+</Solution>

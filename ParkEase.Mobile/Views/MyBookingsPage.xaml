@@ -1,0 +1,483 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.MyBookingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    BackgroundColor="#090B1F"
+    Title="My Bookings">
+
+    <ContentPage.BindingContext>
+        <viewmodels:BookingsViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+
+
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+
+           <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <!-- HEADER -->
+                <VerticalStackLayout Spacing="6">
+
+                    <Label
+                        Text="Book Parking"
+                        FontSize="36"
+                        FontAttributes="Bold"
+                        TextColor="White" />
+
+                    <Label
+                        Text="Reserve a parking space and manage your bookings."
+                        FontSize="15"
+                        TextColor="#CFCFFF" />
+
+                </VerticalStackLayout>
+
+                <!-- BOOKING FORM -->
+                <Border Style="{StaticResource GlassCard}">
+
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label
+                            Text="New Reservation"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <!-- PARKING LOT -->
+                        <Picker
+                            Title="Select Parking Lot"
+                            ItemsSource="{Binding ParkingLots}"
+                            SelectedItem="{Binding SelectedParkingLot}"
+                            TextColor="White"
+                            TitleColor="#AAFFFFFF" />
+
+                        <!-- VEHICLE -->
+                        <Picker
+                            Title="Select Vehicle"
+                            ItemsSource="{Binding Vehicles}"
+                            ItemDisplayBinding="{Binding PlateNumber}"
+                            SelectedItem="{Binding SelectedVehicle}"
+                            TextColor="White"
+                            TitleColor="#AAFFFFFF" />
+
+                        <!-- DATE -->
+                        <DatePicker
+                            Date="{Binding BookingDate}"
+                            TextColor="White" />
+
+                        <!-- TIME -->
+                        <TimePicker
+                            Time="{Binding BookingTime}"
+                            TextColor="White" />
+
+                        <!-- DURATION -->
+                        <Entry
+                            Placeholder="Duration Hours"
+                            Text="{Binding DurationHours}"
+                            Keyboard="Numeric"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF" />
+
+                        <!-- PRICE -->
+                        <Entry
+                            Placeholder="Price Per Hour"
+                            Text="{Binding PricePerHour}"
+                            Keyboard="Numeric"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF" />
+
+                        <!-- NOTES -->
+                        <Editor
+                            Placeholder="Booking Notes"
+                            Text="{Binding Notes}"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF"
+                            AutoSize="TextChanges"
+                            HeightRequest="100" />
+
+                        <!-- TOTAL -->
+                        <Border
+                            BackgroundColor="#22FFFFFF"
+                            Padding="16"
+                            StrokeThickness="0">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="18" />
+                            </Border.StrokeShape>
+
+                            <Grid ColumnDefinitions="*,Auto">
+
+                                <VerticalStackLayout>
+                                    <Label
+                                        Text="Estimated Total"
+                                        FontSize="13"
+                                        TextColor="#AFC0FF" />
+
+                                    <Label
+                                        Text="Reservation Cost"
+                                        FontSize="16"
+                                        TextColor="White" />
+                                </VerticalStackLayout>
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding CalculatedTotal}"
+                                    FontSize="26"
+                                    FontAttributes="Bold"
+                                    TextColor="#A6E3FF"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- BUTTON -->
+                        <Button
+                            Text="Confirm Booking"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding CreateBookingCommand}" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- HISTORY -->
+                <Label
+                    Text="Booking History"
+                    FontSize="26"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <!-- BOOKINGS LIST -->
+                <CollectionView ItemsSource="{Binding Bookings}">
+
+                    <CollectionView.EmptyView>
+
+                        <Label
+                            Text="No bookings yet."
+                            TextColor="#DADFFF"
+                            HorizontalTextAlignment="Center"
+                            Margin="0,30,0,0" />
+
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Border Style="{StaticResource GlassCard}"
+                                    Padding="0"
+                                    Margin="0,10">
+
+                                <VerticalStackLayout Spacing="0">
+
+                                    <!-- TOP IMAGE -->
+                                    <Grid HeightRequest="150">
+
+                                        <Image
+    Source="{Binding VehicleImage}"
+    Aspect="AspectFill"
+    Opacity="0.95" />
+
+                                        <BoxView Color="#66000000" />
+
+                                        <!-- STATUS -->
+                                        <Border
+                                            BackgroundColor="#AA000000"
+                                            Padding="12,6"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Start"
+                                            Margin="14"
+                                            StrokeThickness="0">
+
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="16" />
+                                            </Border.StrokeShape>
+
+                                            <Label
+                                                Text="{Binding Status}"
+                                                TextColor="White"
+                                                FontSize="13"
+                                                FontAttributes="Bold" />
+
+                                        </Border>
+
+                                        <!-- PLATE -->
+                                        <Border
+                                            BackgroundColor="#AA000000"
+                                            Padding="12,6"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Start"
+                                            Margin="14"
+                                            StrokeThickness="0">
+
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="16" />
+                                            </Border.StrokeShape>
+
+                                            <Label
+                                                Text="{Binding VehiclePlateNumber}"
+                                                TextColor="#A6E3FF"
+                                                FontSize="14"
+                                                FontAttributes="Bold" />
+
+                                        </Border>
+
+                                        <!-- ICON -->
+                                       
+
+                                    </Grid>
+
+                                    <!-- CONTENT -->
+                                    <VerticalStackLayout Padding="18"
+                                                         Spacing="14">
+
+                                        <Label
+                                            Text="{Binding ParkingLotName}"
+                                            FontSize="22"
+                                            FontAttributes="Bold"
+                                            TextColor="White" />
+
+                                            <Border
+    BackgroundColor="#22FFFFFF"
+    Padding="12,6"
+    StrokeThickness="0"
+    HorizontalOptions="Start">
+
+    <Border.StrokeShape>
+        <RoundRectangle CornerRadius="16" />
+    </Border.StrokeShape>
+
+    <Label
+        Text="{Binding TimerStatus}"
+        FontSize="13"
+        FontAttributes="Bold"
+        TextColor="#A6E3FF" />
+</Border>
+
+                                        <Grid ColumnDefinitions="*,*"
+                                              RowDefinitions="Auto,Auto"
+                                              ColumnSpacing="18"
+                                              RowSpacing="14">
+
+                                            <VerticalStackLayout Spacing="4">
+
+                                                <Label
+                                                    Text="Booking Date"
+                                                    FontSize="12"
+                                                    TextColor="#AFC0FF" />
+
+                                                <Label
+                                                    Text="{Binding BookingDate, StringFormat='{0:MMM dd, yyyy}'}"
+                                                    FontSize="15"
+                                                    TextColor="White" />
+
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout
+                                                Grid.Column="1"
+                                                Spacing="4">
+
+                                                <Label
+                                                    Text="Booking Time"
+                                                    FontSize="12"
+                                                    TextColor="#AFC0FF" />
+
+                                                <Label
+                                                    Text="{Binding BookingDate, StringFormat='{0:hh:mm tt}'}"
+                                                    FontSize="15"
+                                                    TextColor="White" />
+
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout
+                                                Grid.Row="1"
+                                                Spacing="4">
+
+                                                <Label
+                                                    Text="Duration"
+                                                    FontSize="12"
+                                                    TextColor="#AFC0FF" />
+
+                                                <Label
+                                                    Text="{Binding DurationHours, StringFormat='{0} hour(s)'}"
+                                                    FontSize="15"
+                                                    TextColor="White" />
+
+                                            </VerticalStackLayout>
+
+                                            <VerticalStackLayout
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Spacing="4">
+
+                                                <Label
+                                                    Text="Price / Hour"
+                                                    FontSize="12"
+                                                    TextColor="#AFC0FF" />
+
+                                                <Label
+                                                    Text="{Binding PricePerHour, StringFormat='${0:N0}'}"
+                                                    FontSize="15"
+                                                    TextColor="White" />
+
+                                            </VerticalStackLayout>
+
+                                        </Grid>
+
+                                        <!-- TOTAL -->
+                                        <Border
+                                            BackgroundColor="#22FFFFFF"
+                                            Padding="16"
+                                            StrokeThickness="0">
+
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="18" />
+                                            </Border.StrokeShape>
+
+                                            <Grid ColumnDefinitions="*,Auto">
+
+                                                <VerticalStackLayout>
+
+                                                    <Label
+                                                        Text="Estimated Total"
+                                                        FontSize="12"
+                                                        TextColor="#AFC0FF" />
+
+                                                    <Label
+                                                        Text="Reservation Cost"
+                                                        FontSize="15"
+                                                        TextColor="White" />
+
+                                                </VerticalStackLayout>
+
+                                                <Label
+                                                    Grid.Column="1"
+                                                    Text="{Binding TotalCost, StringFormat='${0:N0}'}"
+                                                    FontSize="26"
+                                                    FontAttributes="Bold"
+                                                    TextColor="#A6E3FF"
+                                                    VerticalOptions="Center" />
+
+                                            </Grid>
+
+                                        </Border>
+
+                                        <!-- NOTES -->
+                                        <Border
+                                            BackgroundColor="#18FFFFFF"
+                                            Padding="14"
+                                            StrokeThickness="0">
+
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="16" />
+                                            </Border.StrokeShape>
+
+                                            <VerticalStackLayout Spacing="6">
+
+                                                <Label
+                                                    Text="Booking Notes"
+                                                    FontSize="12"
+                                                    TextColor="#AFC0FF" />
+
+                                                <Label
+                                                    Text="{Binding Notes}"
+                                                    FontSize="14"
+                                                    TextColor="#E6E6FF" />
+
+                                            </VerticalStackLayout>
+
+                                        </Border>
+
+                                        <!-- BUTTONS -->
+                                       <!-- BOOKING STATUS ACTIONS -->
+<Grid
+    ColumnDefinitions="*,*"
+    RowDefinitions="Auto,Auto"
+    ColumnSpacing="12"
+    RowSpacing="12">
+
+    <Button
+        Text="Mark Reserved"
+        BackgroundColor="#663D7EFF"
+        TextColor="White"
+        CornerRadius="18"
+        HeightRequest="46"
+        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BookingsViewModel}}, Path=MarkReservedCommand}"
+        CommandParameter="{Binding .}" />
+
+    <Button
+        Grid.Column="1"
+        Text="Check In"
+        BackgroundColor="#337DFF"
+        TextColor="White"
+        CornerRadius="18"
+        HeightRequest="46"
+        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BookingsViewModel}}, Path=CheckInCommand}"
+        CommandParameter="{Binding .}" />
+
+    <Button
+        Grid.Row="1"
+        Text="Complete"
+        BackgroundColor="#2BAE66"
+        TextColor="White"
+        CornerRadius="18"
+        HeightRequest="46"
+        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BookingsViewModel}}, Path=CompleteBookingCommand}"
+        CommandParameter="{Binding .}" />
+
+    <Button
+        Grid.Row="1"
+        Grid.Column="1"
+        Text="Cancel"
+        BackgroundColor="#AAFF3B5C"
+        TextColor="White"
+        CornerRadius="18"
+        HeightRequest="46"
+        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BookingsViewModel}}, Path=CancelBookingCommand}"
+        CommandParameter="{Binding .}" />
+
+</Grid>
+
+<Button
+    Text="Delete Booking"
+    BackgroundColor="#55FFFFFF"
+    TextColor="White"
+    CornerRadius="18"
+    HeightRequest="44"
+    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BookingsViewModel}}, Path=DeleteBookingCommand}"
+    CommandParameter="{Binding .}" />
+
+                                    </VerticalStackLayout>
+
+                                </VerticalStackLayout>
+
+                            </Border>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+        <controls:AppMenuWidget
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    ZIndex="110" />
+
+    <controls:BottomNavBar
+    HorizontalOptions="Fill"
+    VerticalOptions="End"
+    ZIndex="105" />
+
+    </Grid>
+
+</ContentPage>

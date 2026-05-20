@@ -1,0 +1,295 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.AnalyticsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    BackgroundColor="#090B1F"
+    Title="Analytics">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AnalyticsViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+
+        <BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+            <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <VerticalStackLayout Spacing="6">
+                    <Label
+                        Text="Analytics Dashboard"
+                        FontSize="36"
+                        FontAttributes="Bold"
+                        TextColor="White" />
+
+                    <Label
+                        Text="Monitor revenue, bookings, occupancy, utilization, and operational performance."
+                        FontSize="15"
+                        TextColor="#CFCFFF" />
+                </VerticalStackLayout>
+
+                <!-- KPI CARDS -->
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="14" RowSpacing="14">
+
+                    <Border Style="{StaticResource GlassCard}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Total Revenue" TextColor="#CFCFFF" />
+                            <Label Text="{Binding TotalRevenue}" FontSize="32" FontAttributes="Bold" TextColor="#A6E3FF" />
+                            <Label Text="Revenue from non-cancelled bookings" FontSize="12" TextColor="#BFC4FF" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1" Style="{StaticResource GlassCard}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Total Bookings" TextColor="#CFCFFF" />
+                            <Label Text="{Binding TotalBookings}" FontSize="32" FontAttributes="Bold" TextColor="White" />
+                            <Label Text="All reservations recorded" FontSize="12" TextColor="#BFC4FF" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="1" Style="{StaticResource GlassCard}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Active / Reserved" TextColor="#CFCFFF" />
+                            <Label Text="{Binding ActiveBookings}" FontSize="32" FontAttributes="Bold" TextColor="#90EE90" />
+                            <Label Text="Pending, reserved, or checked in" FontSize="12" TextColor="#BFC4FF" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource GlassCard}">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Cancelled" TextColor="#CFCFFF" />
+                            <Label Text="{Binding CancelledBookings}" FontSize="32" FontAttributes="Bold" TextColor="#FF6B8A" />
+                            <Label Text="Cancelled reservations" FontSize="12" TextColor="#BFC4FF" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                </Grid>
+
+                <!-- OCCUPANCY CHART SUMMARY -->
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="18">
+
+                        <Label
+                            Text="Occupancy Overview"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Grid ColumnDefinitions="140,*" ColumnSpacing="20">
+
+                            <!-- DONUT-STYLE KPI -->
+                            <Border
+                                WidthRequest="130"
+                                HeightRequest="130"
+                                BackgroundColor="#22FFFFFF"
+                                Stroke="#8B5CFF"
+                                StrokeThickness="8"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="65" />
+                                </Border.StrokeShape>
+
+                                <VerticalStackLayout
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    Spacing="2">
+
+                                    <Label
+                                        Text="{Binding OverallOccupancyText}"
+                                        FontSize="20"
+                                        FontAttributes="Bold"
+                                        TextColor="#A6E3FF"
+                                        HorizontalTextAlignment="Center" />
+
+                                    <Label
+                                        Text="Occupancy"
+                                        FontSize="12"
+                                        TextColor="#DADFFF"
+                                        HorizontalTextAlignment="Center" />
+
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="12" VerticalOptions="Center">
+
+                                <Label
+                                    Text="{Binding OccupancySummary}"
+                                    FontSize="15"
+                                    TextColor="#DADFFF" />
+
+                                <ProgressBar
+                                    Progress="{Binding OverallOccupancyRate}"
+                                    ProgressColor="#8B5CFF"
+                                    BackgroundColor="#33FFFFFF"
+                                    HeightRequest="8"
+                                    ScaleY="2" />
+
+                                <Label
+                                    Text="This chart shows the total percentage of parking spaces currently occupied or reserved across all managed lots."
+                                    FontSize="12"
+                                    TextColor="#BFC4FF" />
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- BOOKING STATUS CHART -->
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="16">
+
+                        <Label
+                            Text="Booking Status Breakdown"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="14">
+
+                            <Border BackgroundColor="#2290EE90" Padding="16" Stroke="#4490EE90">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20" />
+                                </Border.StrokeShape>
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="Active / Reserved" TextColor="#DADFFF" FontSize="13" />
+                                    <Label Text="{Binding ActiveBookings}" TextColor="#90EE90" FontSize="32" FontAttributes="Bold" />
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Border Grid.Column="1" BackgroundColor="#22FF6B8A" Padding="16" Stroke="#44FF6B8A">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20" />
+                                </Border.StrokeShape>
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="Cancelled" TextColor="#DADFFF" FontSize="13" />
+                                    <Label Text="{Binding CancelledBookings}" TextColor="#FF6B8A" FontSize="32" FontAttributes="Bold" />
+                                </VerticalStackLayout>
+                            </Border>
+
+                        </Grid>
+
+                        <Label
+                            Text="This section acts as a simplified pie-style status breakdown for reservation activity."
+                            FontSize="12"
+                            TextColor="#BFC4FF" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- LOT UTILIZATION BAR CHART -->
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="18">
+
+                        <Label
+                            Text="Lot Utilization Bar Chart"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Label
+                            Text="Parking lots are ranked from highest to lowest occupancy."
+                            FontSize="13"
+                            TextColor="#CFCFFF" />
+
+                        <CollectionView ItemsSource="{Binding LotOccupancyItems}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout Spacing="8" Margin="0,10">
+
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <Label
+                                                Text="{Binding Name}"
+                                                FontSize="15"
+                                                FontAttributes="Bold"
+                                                TextColor="White" />
+
+                                            <Border
+                                                Grid.Column="1"
+                                                BackgroundColor="{Binding StatusColor}"
+                                                Padding="10,4"
+                                                StrokeThickness="0">
+
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="12" />
+                                                </Border.StrokeShape>
+
+                                                <Label
+                                                    Text="{Binding StatusLabel}"
+                                                    FontSize="11"
+                                                    FontAttributes="Bold"
+                                                    TextColor="White" />
+                                            </Border>
+                                        </Grid>
+
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <Label
+                                                Text="{Binding AvailableText}"
+                                                FontSize="13"
+                                                TextColor="#CFCFFF" />
+
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="{Binding OccupancyText}"
+                                                FontSize="13"
+                                                TextColor="#A6E3FF" />
+                                        </Grid>
+
+                                        <ProgressBar
+                                            Progress="{Binding OccupancyRate}"
+                                            ProgressColor="{Binding StatusColor}"
+                                            BackgroundColor="#33FFFFFF"
+                                            HeightRequest="10"
+                                            ScaleY="2.4" />
+
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- AI INSIGHTS -->
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="AI-Style Insights"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Label Text="{Binding InsightOne}" TextColor="#E6E6FF" FontSize="15" />
+                        <Label Text="{Binding InsightTwo}" TextColor="#E6E6FF" FontSize="15" />
+                        <Label Text="{Binding InsightThree}" TextColor="#E6E6FF" FontSize="15" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button
+                    Text="Refresh Analytics"
+                    Style="{StaticResource PrimaryButton}"
+                    Command="{Binding LoadAnalyticsCommand}" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <controls:AppMenuWidget
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            ZIndex="110" />
+
+            <controls:BottomNavBar
+    HorizontalOptions="Fill"
+    VerticalOptions="End"
+    ZIndex="105" />
+
+    </Grid>
+</ContentPage>

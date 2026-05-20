@@ -1,0 +1,324 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.DashboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    BackgroundColor="#090B1F"
+    Title="Dashboard">
+
+    <ContentPage.BindingContext>
+        <viewmodels:DashboardViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+
+     <BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+           <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <VerticalStackLayout
+                    Spacing="10"
+                    HorizontalOptions="Center">
+
+                    <Image
+                        Source="parkease_logotype_white.png"
+                        HeightRequest="170"
+                        Aspect="AspectFit"
+                        Margin="0,10,0,10" />
+
+                    <Border
+                        HeightRequest="76"
+                        WidthRequest="76"
+                        HorizontalOptions="Center"
+                        BackgroundColor="#33FFFFFF"
+                        Stroke="#88FFFFFF"
+                        StrokeThickness="2">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="38" />
+                        </Border.StrokeShape>
+
+                        <Image
+                            Source="{Binding ProfileImage}"
+                            Aspect="AspectFill"
+                            HeightRequest="70"
+                            WidthRequest="70" />
+                    </Border>
+
+                    <Label
+                        Text="{Binding WelcomeText}"
+                        FontSize="18"
+                        TextColor="#CFCFFF"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="{Binding DisplayName}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Find and reserve secure parking spaces instantly."
+                        FontSize="16"
+                        TextColor="#CFCFFF"
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="16">
+
+                    <Border
+                        Style="{StaticResource GlassCard}"
+                        HeightRequest="140">
+
+                        <VerticalStackLayout Spacing="10">
+
+                            <Label
+                                Text="Available Lots"
+                                FontSize="16"
+                                TextColor="#DADFFF" />
+
+                            <Label
+                                Text="{Binding AvailableLots}"
+                                FontSize="42"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        Style="{StaticResource GlassCard}"
+                        HeightRequest="140">
+
+                        <VerticalStackLayout Spacing="10">
+
+                            <Label
+                                Text="My Bookings"
+                                FontSize="16"
+                                TextColor="#DADFFF" />
+
+                            <Label
+                                Text="{Binding MyBookings}"
+                                FontSize="42"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                </Grid>
+
+                <Label
+                    Text="Featured Parking"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Border
+                    Style="{StaticResource GlassCard}"
+                    Padding="0">
+
+                    <Grid RowDefinitions="220,Auto">
+
+                        <Grid>
+
+                            <Image
+                                Source="newkingston_parking.jpg"
+                                Aspect="AspectFill" />
+
+                            <BoxView Color="#55000000" />
+
+                        </Grid>
+
+                        <VerticalStackLayout
+                            Grid.Row="1"
+                            Padding="18"
+                            Spacing="12">
+
+                            <Label
+                                Text="New Kingston Secure Parking"
+                                FontSize="22"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                            <Label
+                                Text="24 hour monitored parking with smart access."
+                                FontSize="14"
+                                TextColor="#DADFFF" />
+
+                            <Grid ColumnDefinitions="*,Auto">
+
+                                <Label
+                                    Text="$250/hr"
+                                    FontSize="20"
+                                    FontAttributes="Bold"
+                                    TextColor="#A6E3FF" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Text="Reserve"
+                                    Style="{StaticResource PrimaryButton}"
+                                    WidthRequest="140"
+                                    Pressed="ReserveButton_Pressed"
+                                    Released="ReserveButton_Released"
+                                    Clicked="FeaturedReserve_Clicked" />
+
+                            </Grid>
+
+                        </VerticalStackLayout>
+
+                    </Grid>
+
+                </Border>
+
+                <Label
+                    Text="Quick Actions"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    RowDefinitions="Auto,Auto"
+                    ColumnSpacing="16"
+                    RowSpacing="16">
+
+                    <Border Style="{StaticResource GlassCard}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="VehiclesCard_Tapped" />
+                        </Border.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <Image
+                                Source="icon_vehicle.png"
+                                HeightRequest="42"
+                                WidthRequest="42" />
+
+                            <Label
+                                Text="My Vehicles"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        Style="{StaticResource GlassCard}">
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="NearbyCard_Tapped" />
+                        </Border.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <Image
+                                Source="icon_nearby.png"
+                                HeightRequest="42"
+                                WidthRequest="42" />
+
+                            <Label
+                                Text="Find Nearby"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Style="{StaticResource GlassCard}">
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ReserveCard_Tapped" />
+                        </Border.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <Image
+                                Source="icon_reserve.png"
+                                HeightRequest="42"
+                                WidthRequest="42" />
+
+                            <Label
+                                Text="Reserve Spot"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Style="{StaticResource GlassCard}">
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="HistoryCard_Tapped" />
+                        </Border.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <Image
+                                Source="icon_history.png"
+                                HeightRequest="42"
+                                WidthRequest="42" />
+
+                            <Label
+                                Text="My History"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                        </VerticalStackLayout>
+                    </Border>
+
+                </Grid>
+
+                <Button
+                    Text="Logout"
+                    BackgroundColor="#33FFFFFF"
+                    TextColor="White"
+                    CornerRadius="22"
+                    HeightRequest="48"
+                    Command="{Binding LogoutCommand}" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- NOTIFICATION BANNER -->
+        <controls:NotificationBanner
+            HorizontalOptions="Fill"
+            VerticalOptions="Start"
+            ZIndex="100" />
+
+        <!-- APP MENU -->
+        <controls:AppMenuWidget
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            ZIndex="110" />
+
+            <controls:BottomNavBar
+    HorizontalOptions="Fill"
+    VerticalOptions="End"
+    ZIndex="105" />
+
+        <!-- AI WIDGET -->
+        <controls:AiAssistantWidget
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            ZIndex="99" />
+
+    </Grid>
+</ContentPage>

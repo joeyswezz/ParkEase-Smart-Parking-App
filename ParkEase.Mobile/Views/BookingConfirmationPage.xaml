@@ -1,0 +1,180 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.BookingConfirmationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#090B1F"
+    Title="Booking Confirmed">
+
+    <Grid>
+
+  
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+
+           <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <Image
+                    Source="success_check.png"
+                    HeightRequest="120"
+                    WidthRequest="120"
+                    HorizontalOptions="Center" />
+
+                <VerticalStackLayout Spacing="8">
+
+                    <Label
+                        Text="Reservation Confirmed"
+                        FontSize="34"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Your parking reservation has been successfully secured."
+                        FontSize="16"
+                        TextColor="#DADFFF"
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+
+                <!-- BOOKING SUMMARY -->
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="18">
+
+                        <Label
+                            Text="Booking Summary"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Grid
+                            ColumnDefinitions="*,*"
+                            RowDefinitions="Auto,Auto"
+                            ColumnSpacing="22"
+                            RowSpacing="16">
+
+                            <VerticalStackLayout>
+                                <Label Text="Parking Lot" FontSize="13" TextColor="#AFC0FF" />
+                                <Label x:Name="ParkingLotLabel" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Plate Number" FontSize="13" TextColor="#AFC0FF" />
+                                <Label x:Name="PlateNumberLabel" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="1">
+                                <Label Text="Duration" FontSize="13" TextColor="#AFC0FF" />
+                                <Label x:Name="DurationLabel" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                                <Label Text="Reservation ID" FontSize="13" TextColor="#AFC0FF" />
+                                <Label x:Name="ReservationIdLabel" FontSize="18" FontAttributes="Bold" TextColor="#A6E3FF" />
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- PAYMENT RECEIPT -->
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="18">
+
+                        <Label
+                            Text="Payment Receipt"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Grid
+                            ColumnDefinitions="*,Auto"
+                            RowDefinitions="Auto,Auto,Auto,Auto"
+                            RowSpacing="14">
+
+                            <Label Text="Transaction ID" FontSize="15" TextColor="#DADFFF" />
+                            <Label
+                                Grid.Column="1"
+                                x:Name="TransactionIdLabel"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                            <Label Grid.Row="1" Text="Payment Method" FontSize="15" TextColor="#DADFFF" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="Visa •••• 4242"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                            <Label Grid.Row="2" Text="Payment Time" FontSize="15" TextColor="#DADFFF" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                x:Name="PaymentTimeLabel"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                            <Label Grid.Row="3" Text="Amount Paid" FontSize="15" TextColor="#DADFFF" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                x:Name="AmountPaidLabel"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                TextColor="#90EE90" />
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- QR -->
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="18">
+
+                        <Label
+                            Text="Parking Entry QR"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            HorizontalTextAlignment="Center" />
+
+                        <Border
+                            BackgroundColor="White"
+                            Padding="14"
+                            HorizontalOptions="Center"
+                            StrokeThickness="0">
+
+                            <Image
+                                x:Name="QrImage"
+                                HeightRequest="240"
+                                WidthRequest="240"
+                                Aspect="AspectFit" />
+                        </Border>
+
+                        <Label
+                            Text="Show this QR code at the parking entrance."
+                            FontSize="15"
+                            TextColor="#DADFFF"
+                            HorizontalTextAlignment="Center" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button
+                    Text="Done"
+                    Style="{StaticResource PrimaryButton}"
+                    Clicked="DoneButton_Clicked" />
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

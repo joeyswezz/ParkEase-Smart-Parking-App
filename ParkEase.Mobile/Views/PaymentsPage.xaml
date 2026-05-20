@@ -1,0 +1,155 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.PaymentsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+    BackgroundColor="#090B1F"
+    Title="Payments">
+
+    <ContentPage.BindingContext>
+        <viewmodels:PaymentsViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+
+  
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+
+           <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <Label
+                    Text="Payment Wallet"
+                    FontSize="34"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Manage your saved payment methods."
+                    FontSize="15"
+                    TextColor="#CFCFFF" />
+
+                <!-- Add Card -->
+                <Border Style="{StaticResource GlassCard}">
+
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label
+                            Text="Add Payment Card"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Entry
+                            Placeholder="Cardholder Name"
+                            Text="{Binding CardholderName}" />
+
+                        <Entry
+                            Placeholder="Card Number"
+                            Keyboard="Numeric"
+                            Text="{Binding CardNumber}" />
+
+                        <Grid ColumnDefinitions="*,*"
+                              ColumnSpacing="12">
+
+                            <Entry
+                                Placeholder="MM/YY"
+                                Text="{Binding ExpiryDate}" />
+
+                            <Entry
+                                Grid.Column="1"
+                                Placeholder="CVV"
+                                Keyboard="Numeric"
+                                Text="{Binding CVV}" />
+
+                        </Grid>
+
+                        <Picker
+                            Title="Card Type"
+                            ItemsSource="{Binding CardTypes}"
+                            SelectedItem="{Binding SelectedCardType}" />
+
+                        <Button
+                            Text="Save Card"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding SaveCardCommand}" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- Saved Cards -->
+                <Label
+                    Text="Saved Cards"
+                    FontSize="26"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <CollectionView ItemsSource="{Binding Cards}">
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <Border Style="{StaticResource GlassCard}">
+
+                                <VerticalStackLayout Spacing="10">
+
+                                    <Grid ColumnDefinitions="*,Auto">
+
+                                        <VerticalStackLayout>
+
+                                            <Label
+                                                Text="{Binding CardType}"
+                                                FontSize="22"
+                                                FontAttributes="Bold"
+                                                TextColor="White" />
+
+                                            <Label
+                                                Text="{Binding CardholderName}"
+                                                TextColor="#DADFFF" />
+
+                                            <Label
+                                                Text="{Binding CardNumber}"
+                                                FontSize="18"
+                                                TextColor="#8ED7FF" />
+
+                                        </VerticalStackLayout>
+
+                                        <Button
+                                            Grid.Column="1"
+                                            Text="Delete"
+                                            BackgroundColor="#D94164"
+                                            TextColor="White"
+                                            CornerRadius="20"
+                                            HeightRequest="44"
+                                            WidthRequest="100"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PaymentsViewModel}}, Path=DeleteCardCommand}"
+                                            CommandParameter="{Binding .}" />
+
+                                    </Grid>
+
+                                </VerticalStackLayout>
+
+                            </Border>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+        <controls:AppMenuWidget
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    ZIndex="110" />
+
+    </Grid>
+
+</ContentPage>

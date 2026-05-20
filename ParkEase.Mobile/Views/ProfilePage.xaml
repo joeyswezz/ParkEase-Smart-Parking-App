@@ -1,0 +1,159 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
+    xmlns:viewmodels="clr-namespace:ParkEase.Mobile.ViewModels"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    BackgroundColor="#090B1F"
+    Title="Profile">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+     
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+           <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <Label
+                    Text="My Profile"
+                    FontSize="36"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Manage your ParkEase account information."
+                    FontSize="15"
+                    TextColor="#CFCFFF" />
+
+                <Border
+                    WidthRequest="120"
+                    HeightRequest="120"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#33FFFFFF"
+                    Stroke="#88FFFFFF"
+                    StrokeThickness="2">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="60" />
+                    </Border.StrokeShape>
+
+                    <Image
+                        Source="{Binding ProfileImage}"
+                        Aspect="AspectFill"
+                        WidthRequest="120"
+                        HeightRequest="120" />
+                </Border>
+
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label
+                            Text="Account Details"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                            <Entry
+                                Placeholder="First Name"
+                                Text="{Binding FirstName}"
+                                TextColor="White"
+                                PlaceholderColor="#AAFFFFFF" />
+
+                            <Entry
+                                Grid.Column="1"
+                                Placeholder="Last Name"
+                                Text="{Binding LastName}"
+                                TextColor="White"
+                                PlaceholderColor="#AAFFFFFF" />
+                        </Grid>
+
+                        <Entry
+                            Placeholder="Display Name"
+                            Text="{Binding DisplayName}"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF" />
+
+                        <Entry
+                            Placeholder="Email Address"
+                            Text="{Binding EmailAddress}"
+                            Keyboard="Email"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF" />
+
+                        <Entry
+                            Placeholder="Phone Number"
+                            Text="{Binding PhoneNumber}"
+                            Keyboard="Telephone"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF" />
+
+                        <Entry
+                            Placeholder="Profile Image filename"
+                            Text="{Binding ProfileImage}"
+                            TextColor="White"
+                            PlaceholderColor="#AAFFFFFF" />
+
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+
+    <Button
+        Text="Choose Photo"
+        BackgroundColor="#33FFFFFF"
+        TextColor="White"
+        CornerRadius="22"
+        HeightRequest="48"
+        Clicked="ChoosePhoto_Clicked" />
+
+    <Button
+        Grid.Column="1"
+        Text="Take Photo"
+        BackgroundColor="#663D7EFF"
+        TextColor="White"
+        CornerRadius="22"
+        HeightRequest="48"
+        Clicked="TakePhoto_Clicked" />
+
+</Grid>
+
+                        <Label
+                            Text="{Binding StatusMessage}"
+                            FontSize="13"
+                            TextColor="#90EE90"
+                            HorizontalTextAlignment="Center" />
+
+                        <Button
+                            Text="Save Profile"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding SaveProfileCommand}" />
+
+                        <Button
+                            Text="Logout"
+                            BackgroundColor="#AAFF3B5C"
+                            TextColor="White"
+                            CornerRadius="22"
+                            HeightRequest="48"
+                            Command="{Binding LogoutCommand}" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+<controls:AppMenuWidget
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    ZIndex="110" />
+
+    <controls:BottomNavBar
+    HorizontalOptions="Fill"
+    VerticalOptions="End"
+    ZIndex="105" />
+
+    </Grid>
+</ContentPage>

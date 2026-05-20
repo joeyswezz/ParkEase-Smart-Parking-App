@@ -1,0 +1,130 @@
+<ContentPage
+    x:Class="ParkEase.Mobile.Views.CheckoutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ParkEase.Mobile.Views.Controls"
+    BackgroundColor="#090B1F"
+    Title="Checkout">
+
+    <Grid>
+   
+<BoxView Color="#060816" Opacity="0.18" />
+
+        <ScrollView>
+           <VerticalStackLayout Padding="24,24,24,120" Spacing="24">
+
+                <Label
+                    Text="Checkout"
+                    FontSize="36"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Review your reservation and complete payment."
+                    FontSize="15"
+                    TextColor="#CFCFFF" />
+
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label Text="Reservation Summary" FontSize="24" FontAttributes="Bold" TextColor="White" />
+
+                        <Grid ColumnDefinitions="*,*">
+                            <VerticalStackLayout>
+                                <Label Text="Parking Lot" TextColor="#AFC0FF" />
+                                <Label x:Name="ParkingLotLabel" TextColor="White" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Vehicle" TextColor="#AFC0FF" />
+                                <Label x:Name="PlateLabel" TextColor="White" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,*">
+                            <VerticalStackLayout>
+                                <Label Text="Duration" TextColor="#AFC0FF" />
+                                <Label x:Name="DurationLabel" TextColor="White" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Rate" TextColor="#AFC0FF" />
+                                <Label x:Name="RateLabel" TextColor="White" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label Text="Payment Breakdown" FontSize="24" FontAttributes="Bold" TextColor="White" />
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Subtotal" TextColor="#DADFFF" />
+                            <Label x:Name="SubtotalLabel" Grid.Column="1" TextColor="White" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Service Fee" TextColor="#DADFFF" />
+                            <Label x:Name="FeeLabel" Grid.Column="1" TextColor="White" />
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#33FFFFFF" />
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Total" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                            <Label x:Name="TotalLabel" Grid.Column="1" FontSize="24" FontAttributes="Bold" TextColor="#A6E3FF" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource GlassCard}">
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label Text="Payment Method" FontSize="24" FontAttributes="Bold" TextColor="White" />
+
+                        <Label
+                            Text="Demo Payment Card"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+
+                        <Label
+                            Text="Visa •••• 4242"
+                            FontSize="15"
+                            TextColor="#CFCFFF" />
+
+                        <Label
+                            Text="This is a simulated payment for school project demonstration."
+                            FontSize="12"
+                            TextColor="#99FFFFFF" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <ActivityIndicator
+                    x:Name="ProcessingIndicator"
+                    IsVisible="False"
+                    IsRunning="False"
+                    Color="#8B5CFF"
+                    HeightRequest="42" />
+
+                <Label
+                    x:Name="StatusLabel"
+                    Text=""
+                    TextColor="#CFCFFF"
+                    HorizontalTextAlignment="Center" />
+
+                <Button
+                    Text="Pay and Confirm Reservation"
+                    Style="{StaticResource PrimaryButton}"
+                    HeightRequest="58"
+                    Clicked="PayButton_Clicked" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
